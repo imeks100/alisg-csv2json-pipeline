@@ -7,5 +7,6 @@ intranet,ingress,accept,tcp,443/443,1,0.0.0.0/0,https
 intranet,ingress,accept,tcp,22/22,1,192.168.0.0/24,ssh
 #intranet,ingress,accept,tcp,22/22,1,sg-abcdefgxxxx,ssh
 intranet,ingress,accept,tcp,3890/3890,1,0.0.0.0/0,
-intranet,egress,accept,tcp,3306/3306,1,0.0.0.0/0,rds mysql
+intranet,ingress,accept,tcp,3306/3306,1,0.0.0.0/0,rds mysql
 #intranet,ingress,accept,gre,-1/-1,1,0.0.0.0/0,
+intranet,ingress,accept,icmp,-1/-1,1,0.0.0.0/0,
