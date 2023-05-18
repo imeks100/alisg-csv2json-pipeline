@@ -4,6 +4,6 @@ security_rule_type,priority,ip_protocol,port_range,authorization_object,policy,d
 "ingress",1,"tcp","80/80","192.168.2.0/24","accept","http"
 "ingress",1,"tcp","443/443","0.0.0.0/0","accept","https"
 #"ingress",1,"tcp","22/22","sg-abcdefgxxxx","accept","ssh"
-"ingress",1,"tcp","3890/3890","0.0.0.0/0","drop",""
+"ingress",1,"tcp","3389/3389","0.0.0.0/0","drop",""
 "egress",1,"tcp","3306/3306","0.0.0.0/0","drop","rds mysql"
 "ingress",1,"gre","-1/-1","0.0.0.0/0","accept",""
