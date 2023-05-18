@@ -18,8 +18,11 @@ resource "alicloud_security_group_rule" "security_group_rules" {
   priority    = local.data.security_group_rules[count.index].priority
 
   # cidr or security group id, only use one of them
-  cidr_ip                  = length(local.data.security_group_rules[count.index].cidr_ip) > 0 ? local.data.security_group_rules[count.index].cidr_ip : null
-  source_security_group_id = length(local.data.security_group_rules[count.index].source_security_group_id) > 0 ? local.data.security_group_rules[count.index].source_security_group_id : null
+  cidr_ip = (length(local.data.security_group_rules[count.index].cidr_ip) > 0
+    ? local.data.security_group_rules[count.index].cidr_ip : null)
+
+  source_security_group_id = (length(local.data.security_group_rules[count.index].source_security_group_id) > 0
+    ? local.data.security_group_rules[count.index].source_security_group_id : null)
 
   description = length(local.data.security_group_rules[count.index].description) > 0 ? local.data.security_group_rules[count.index].description : null
 }
