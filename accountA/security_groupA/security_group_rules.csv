@@ -1,5 +1,4 @@
 # This is a comment
-# Read me to fill this csv
 nic_type,security_rule_type,policy,ip_protocol,port_range,priority,authorization_object,description
 intranet,ingress,accept,tcp,80/80,1,192.168.1.0/24,http
 intranet,ingress,accept,tcp,80/80,1,192.168.2.0/24,http
@@ -8,5 +7,4 @@ intranet,ingress,accept,tcp,22/22,1,192.168.0.0/24,ssh
 #intranet,ingress,accept,tcp,22/22,1,sg-abcdefgxxxx,ssh
 intranet,ingress,accept,tcp,3890/3890,1,0.0.0.0/0,
 intranet,ingress,accept,tcp,3306/3306,1,0.0.0.0/0,rds mysql
-#intranet,ingress,accept,gre,-1/-1,1,0.0.0.0/0,
 intranet,ingress,accept,icmp,-1/-1,1,0.0.0.0/0,
