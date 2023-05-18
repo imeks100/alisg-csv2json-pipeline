@@ -1,5 +1,5 @@
 locals {
-  data = jsondecode(file("sgrs.json"))
+  data = jsondecode(file("security_group_rules.json"))
 }
 
 variable "region" {
