@@ -56,13 +56,17 @@ func (sgr *SecurityGroupRule) CheckPortRange() (bool, error) {
 		if sgr.PortRange == "-1/-1" {
 			return false, fmt.Errorf("invalid port range for %s", sgr.IPProtocol)
 		}
-		
-		if minPort < 1 || maxPort > 65535 {
+
+		if minPort < 1 || minPort > 65535 {
 			return false, fmt.Errorf("port range should be in (1,65535)")
 		}
-		
-		if maxPort < 1 || minPort > 65535 {
+
+		if maxPort < 1 || maxPort > 65535 {
 			return false, fmt.Errorf("port range should be in (1,65535)")
+		}
+
+		if minPort > maxPort {
+			return false, fmt.Errorf("min port must less than or equal max port")
 		}
 	}
 
@@ -112,11 +116,7 @@ func checkSecurityGroupID(sgidstr string) bool {
 	pattern := `^sg-[a-z0-9]+$`
 	valid := regexp.MustCompile(pattern)
 
-	if !valid.MatchString(sgidstr) {
-		return false
-	}
-
-	return true
+	return valid.MatchString(sgidstr)
 }
 
 func (entry *SecurityGroupRule) CSVRecordToSecurityGroupRule(record []string) (*SecurityGroupRule, error) {
