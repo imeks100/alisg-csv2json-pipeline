@@ -1,10 +1,11 @@
 # This is a comment
-security_rule_type,priority,ip_protocol,port_range,authorization_object,policy,description
-"ingress",1,"tcp","80/80","192.168.1.0/24","accept","http"
-"ingress",1,"tcp","80/80","192.168.2.0/24","accept","http"
-"ingress",1,"tcp","443/443","0.0.0.0/0","accept","https"
-#"ingress",1,"tcp","22/22","sg-abcdefgxxxx","accept","ssh"
-"ingress",1,"tcp","3389/3389","0.0.0.0/0","drop",""
-"egress",1,"tcp","3306/3306","0.0.0.0/0","drop","rds mysql"
-#"ingress",1,"gre","-1/-1","0.0.0.0/0","accept",""
-"ingress",1,"icmp","-1/-1","0.0.0.0/0","accept",""
+# Read me to fill this csv
+nic_type,security_rule_type,policy,ip_protocol,port_range,priority,authorization_object,description
+intranet,ingress,accept,tcp,80/80,1,192.168.1.0/24,http
+intranet,ingress,accept,tcp,80/80,1,192.168.2.0/24,http
+intranet,ingress,accept,tcp,443/443,1,0.0.0.0/0,https
+intranet,ingress,accept,tcp,22/22,1,192.168.0.0/24,ssh
+#intranet,ingress,accept,tcp,22/22,1,sg-abcdefgxxxx,ssh
+intranet,ingress,accept,tcp,3890/3890,1,0.0.0.0/0,
+intranet,egress,accept,tcp,3306/3306,1,0.0.0.0/0,rds mysql
+intranet,ingress,accept,gre,-1/-1,1,0.0.0.0/0,
