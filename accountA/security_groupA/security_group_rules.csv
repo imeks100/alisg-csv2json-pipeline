@@ -1,5 +1,4 @@
 # This is a comment
-# Read me to fill this csv
 security_rule_type,priority,ip_protocol,port_range,authorization_object,policy,description
 "ingress",1,"tcp","80/80","192.168.1.0/24","accept","http"
 "ingress",1,"tcp","80/80","192.168.2.0/24","accept","http"
