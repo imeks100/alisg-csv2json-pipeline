@@ -32,22 +32,21 @@ func NewSecurityGroupRule() *SecurityGroupRule {
 
 // CheckPortRange check port range format is valid.
 func (sgr *SecurityGroupRule) CheckPortRange() (bool, error) {
-	portrange := sgr.PortRange
 	pattern := `^([-]?[0-9]+)/([-]?[0-9]+)$`
 	valid := regexp.MustCompile(pattern)
 
-	if !valid.MatchString(portrange) {
+	if !valid.MatchString(sgr.PortRange) {
 		return false, fmt.Errorf("invalid port range format")
 	}
 
-	ports := valid.FindStringSubmatch(portrange)
+	ports := valid.FindStringSubmatch(sgr.PortRange)
 
-	min_port, err := strconv.Atoi(ports[1])
+	minPort, err := strconv.Atoi(ports[1])
 	if err != nil {
 		return false, fmt.Errorf("min port should be a number")
 	}
 
-	max_port, err := strconv.Atoi(ports[2])
+	maxPort, err := strconv.Atoi(ports[2])
 	if err != nil {
 		return false, fmt.Errorf("max port should be a number")
 	}
@@ -57,7 +56,12 @@ func (sgr *SecurityGroupRule) CheckPortRange() (bool, error) {
 		if sgr.PortRange == "-1/-1" {
 			return false, fmt.Errorf("invalid port range for %s", sgr.IPProtocol)
 		}
-		if min_port < 1 || max_port > 65535 {
+		
+		if minPort < 1 || maxPort > 65535 {
+			return false, fmt.Errorf("port range should be in (1,65535)")
+		}
+		
+		if maxPort < 1 || minPort > 65535 {
 			return false, fmt.Errorf("port range should be in (1,65535)")
 		}
 	}
@@ -109,18 +113,6 @@ func checkSecurityGroupID(sgidstr string) bool {
 	valid := regexp.MustCompile(pattern)
 
 	if !valid.MatchString(sgidstr) {
-		return false
-	}
-
-	var sgid struct {
-		SecurityGroupID string `validate:"startswith=sg-"`
-	}
-
-	validate := validator.New()
-
-	sgid.SecurityGroupID = sgidstr
-
-	if err := validate.Struct(sgid); err != nil {
 		return false
 	}
 
