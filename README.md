@@ -1,7 +1,7 @@
 # alisg-csv2json-pipeline
 Convert csv file to json for alibaba cloud security group rule, terraform load data from json file, then apply.
 
-# repo hierarchy
+# repository hierarchy
 ```
 ├── accountA
 │   ├── security_groupA/(terraform files, csv file)
