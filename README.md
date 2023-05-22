@@ -73,7 +73,7 @@ resource "alicloud_security_group_rule" "security_group_rules" {
 # build binary
 ```
 cd alisg-csv2json
-go mod tidy
+go mod init alisg-csv2json && go mod tidy
 go build
 sudo cp alisg-csv2json /usr/local/bin
 ```
